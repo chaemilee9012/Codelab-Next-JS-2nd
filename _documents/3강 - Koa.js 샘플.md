@@ -34,7 +34,7 @@ app
     const server = new Koa();
     const router = new Router();
 
-    router.get('*', async context => {
+    router.get('(.*)', async context => {
       await handle(context.req, context.res);
       context.respond = false;
     });
@@ -48,7 +48,7 @@ app
     server.use(koaBody({ multipart: true }));
     server.use(
       cors({
-        origin: '*',
+        origin: '(.*)',
         allowMethods: ['GET', 'HEAD', 'PUT', 'POST', 'DELETE', 'PATCH'],
         allowHeaders: ['Content-Type', 'Authorization'],
         exposeHeaders: ['Content-Length', 'Date', 'X-Request-Id'],
